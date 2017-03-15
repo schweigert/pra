@@ -7,7 +7,7 @@ class Quick < Sort
 	end
 
 	def execute
-		return quick @array		
+		return quick(copy(@array))	
 	end
 
 	def quick lista
@@ -23,7 +23,7 @@ class Quick < Sort
 			pmaior << i if i > p
 			pmenor << i if i <= p
 		end
-		
+
 		return (quick(pmenor))+[p]+(quick(pmaior))
 
 	end

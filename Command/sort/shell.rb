@@ -7,7 +7,7 @@ class Shell < Sort
 	end
 
 	def execute
-		return shellsort @array		
+		return shellsort(copy(@array))		
 	end
 
 	def shellsort(list)
@@ -17,7 +17,7 @@ class Shell < Sort
 		until d/2 == 0 do
 			d = d / 2
 			0.step(list.length) do |i|
-				(i+d).step(list.length-1, d) do |igap| 
+				(i+d).step(list.length-1, d) do |igap|
 					temp = list[igap]
 					j = igap
 					while j >= i do
@@ -34,8 +34,3 @@ class Shell < Sort
 
 
 end
-
-
-
-
-

@@ -1,11 +1,17 @@
 require_relative "sort/factory"
 
-sorts = [:quick, :merge, :shell]
+sorts = [:tim, :quick, :merge, :shell,:bubble,:insertion, :selection]
+
+lista = []
+
+1000.times do
+	lista << (rand*1000).to_i
+end
 
 for i in sorts
 	sort = SortFactory.create i
-	sort.init [50,30,20,70,50]
+	sort.init lista
 	r = sort.execute
-	p "#{i.to_s} method:"	
+	puts "#{sort.class} method:"
 	p r
 end
