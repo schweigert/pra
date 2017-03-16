@@ -7,7 +7,7 @@ class Quick < Sort
 	end
 
 	def execute
-		return quick(copy(@array))	
+		return quick(copy(@array))
 	end
 
 	def quick lista

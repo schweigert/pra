@@ -7,7 +7,7 @@ class Shell < Sort
 	end
 
 	def execute
-		return shellsort(copy(@array))		
+		return shellsort(copy(@array))
 	end
 
 	def shellsort(list)
