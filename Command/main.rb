@@ -9,9 +9,8 @@ lista = []
 end
 
 for i in sorts
-	sort = SortFactory.create i
+	sort = SortFactory.createDebuggin i
 	sort.init lista
 	r = sort.execute
-	puts "#{sort.class} method:"
 	p r
 end
