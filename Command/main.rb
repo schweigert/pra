@@ -1,19 +1,11 @@
-require_relative 'sort/merge'
-require_relative 'sort/quick'
-require_relative 'sort/shell'
+require_relative "sort/factory"
 
+sorts = [:quick, :merge, :shell]
 
-merge = Merge.new
-merge.init [5,4,3,7,9]
-resultado = merge.execute
-p resultado
-
-quick = Quick.new
-quick.init [77,88,99,20,11,44,25,96]
-resultado = quick.execute
-p resultado
-
-shell = Shell.new
-shell.init [77,88,99,20,11,44,25,96]
-resultado = shell.execute
-p resultado
+for i in sorts
+	sort = SortFactory.create i
+	sort.init [50,30,20,70,50]
+	r = sort.execute
+	p "#{i.to_s} method:"	
+	p r
+end
