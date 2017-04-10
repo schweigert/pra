@@ -14,11 +14,22 @@ class Getter
 
   end
 
-  def position
-    return ( @init.to_time.to_i - @initialHash)/1000
+  def position date
+    return ( date.to_time.to_i - @initialHash)/1000
   end
 
-  def execute filename
+  def getValue filename, date
+    file = File.new(filename, "r")
+    @init = date
+    file.pos = position date
+    r = file.gets.to_f
+    file.close
+    return r
+  end
+
+  def update filename
+
+    @init = Date.new(1997,1,1)
 
     file = File.new(filename, "w")
 
@@ -29,7 +40,7 @@ class Getter
 
     loop {
 
-      file.pos = position
+      file.pos = position @init
 
       ds = DollarScrapper.new @init.year, @init.month, @init.day
       ds.execute
@@ -37,7 +48,7 @@ class Getter
       @values[@init.to_s] = value
       file.puts value
 
-      puts "#{@init.to_s} <Writing in #{position} value: #{value}>"
+      puts "#{@init.to_s} <Writing in #{file.pos} value: #{value}>"
 
       # puts "Dia #{@init.to_s} = #{@values[@init.to_s]}"
 
