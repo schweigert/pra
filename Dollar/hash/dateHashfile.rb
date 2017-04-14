@@ -9,20 +9,22 @@ class DateHashfile < Hashfile
   @init = Date.new 1997, 1, 1
   @size = 20
 
-  def setFirstDate year, month, day
-    @init = Date.new year, month, day
+  def setFirstDate date
+    @init = date
   end
 
   def setSize n
     @size = n+1
   end
 
+
+
   # Data is a Date class
   def hash h
     # raise if data isn't Date class
-    raise "Hash isn't Date class" if data.class == Date
+    raise "Hash isn't Date class" if h.class != Date
 
-    days = (@init - h).to_i
+    days = (h - @init).to_i
     position = days * @size
 
     return position
