@@ -11,6 +11,7 @@ class Hashfile
     # Thread safe sys
     @semaphore = Mutex.new
 
+    # Open a file
     @file = File.new(filename, "a+")
   end
 

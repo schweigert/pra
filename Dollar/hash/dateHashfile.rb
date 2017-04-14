@@ -6,6 +6,9 @@ require_relative "hashfile"
 # 80 bytes for data
 class DateHashfile < Hashfile
 
+  @init = Date.new 1997, 1, 1
+  @size = 20
+
   def setFirstDate year, month, day
     @init = Date.new year, month, day
   end
