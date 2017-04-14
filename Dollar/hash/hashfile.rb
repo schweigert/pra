@@ -1,8 +1,16 @@
+require 'thread'
+
+
 # Interface for hashfile
 class Hashfile
 
+
+
   # Start a buffer to the file
   def initialize filename
+    # Thread safe sys
+    @semaphore = Mutex.new
+
     @file = File.new(filename, "a+")
   end
 
@@ -13,15 +21,18 @@ class Hashfile
 
   # Set the v data with h data
   def setValue h, v
-    @file.pos = hash h
-    @file.puts v
+    @semaphore.synchronize do
+      @file.pos = hash h
+      @file.puts v
+    end
   end
 
   # Get the value in file with h data
   def getValue h
-    @file.pos = hash h
-    v = @file.gets
-
+    @semaphore.synchronize do
+      @file.pos = hash h
+      v = @file.gets
+    end
     return v
   end
 
