@@ -84,12 +84,14 @@ end
 
 
 btn_up = TkButton.new(root) do
-  text "Get Value"
+  text "Download Hashfile"
   command (proc {
-    restore $year.value.to_i, $month.value.to_i, $day.value.to_i
+      download
     })
   pack("side" => "right",  "padx"=> "100", "pady"=> "100")
 end
+
+
 
 Tk.mainloop
 
