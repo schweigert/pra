@@ -46,8 +46,8 @@ class Hashfile
     @semaphore.synchronize do
       @file.pos = hash h
       v = @file.gets
+      return v
     end
-    return v
   end
 
   # Close file

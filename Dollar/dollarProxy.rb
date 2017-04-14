@@ -11,7 +11,16 @@ class DollarProxy
     @hashfile.setSize 20
   end
 
-  def download    
+  def restore year, month, day
+    date = Date.new year, month, day
+    if date < Date.new(1997, 1, 1) || date > Date.today
+      raise "Invalid Date"
+    end
+
+    return @hashfile.getValue date
+  end
+
+  def download
     selected = Date.new 1997,1,1
     today = Date.today
     totaldays = (today - selected).to_i
@@ -25,6 +34,7 @@ class DollarProxy
       @hashfile.setValue selected, scrapper.getValue
       selected = selected.next
     end
+
   end
 
   def close
@@ -32,7 +42,3 @@ class DollarProxy
   end
 
 end
-
-proxy = DollarProxy.new :writer
-proxy.download
-proxy.close
