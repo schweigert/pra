@@ -17,7 +17,19 @@ class DollarProxy
       raise "Invalid Date"
     end
 
-    return @hashfile.getValue date
+    v = @hashfile.getValue date
+
+    begin
+      puts "#{date.to_s}:: Next 100 days:"
+      for i in 0..100
+        date = date.next
+        puts "#{date.to_s}: #{(@hashfile.getValue date).to_f.round 5}"
+      end
+    rescue
+
+    end
+
+    return v
   end
 
   def download

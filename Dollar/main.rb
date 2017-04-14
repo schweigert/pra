@@ -74,6 +74,14 @@ $day.value = "1"
 
 
 
+btn_up = TkButton.new(root) do
+  text "Download Hashfile"
+  command (proc {
+      download
+    })
+  pack("side" => "right",  "padx"=> "100", "pady"=> "100")
+end
+
 btn_Get = TkButton.new(root) do
   text "Get Value"
   command (proc {
@@ -83,13 +91,6 @@ btn_Get = TkButton.new(root) do
 end
 
 
-btn_up = TkButton.new(root) do
-  text "Download Hashfile"
-  command (proc {
-      download
-    })
-  pack("side" => "right",  "padx"=> "100", "pady"=> "100")
-end
 
 
 
