@@ -4,18 +4,26 @@ class DollarScrapper
 
   @@lastValue = 368.9982476532
 
-  def initialize year, month, day
+  def initialize date
 
-    @year = year
-    @month = month
-    @day = day
+    @year = date.year
+    @month = date.month
+    @day = date.day
     @date = "#{@year}-#{@month}-#{@day}"
     @uri = URI("http://www.xe.com/currencytables/?from=USD&date=#{@date}")
     @html = ""
   end
 
   def execute
-    @html = Net::HTTP.get @uri
+    loop {
+      begin
+        @html = Net::HTTP.get @uri
+      rescue
+        # try
+        next
+      end
+      break
+    }
   end
 
   def getValue
