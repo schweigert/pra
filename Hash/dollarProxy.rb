@@ -2,10 +2,12 @@ require 'date'
 
 require_relative "hashfile/dateHashfile"
 require_relative "scrapper/xego"
+require_relative "checksun/checksun"
 
 class DollarProxy
 
   def initialize type
+
     @hashfile = DateHashfile.new "db.txt", type
     @hashfile.setFirstDate Date.new 1997, 1, 1
     @hashfile.setSize 20
@@ -46,6 +48,10 @@ class DollarProxy
       @hashfile.setValue selected, scrapper.getValue
       selected = selected.next
     end
+
+    close
+
+    Checksun.make "db.txt"
 
   end
 

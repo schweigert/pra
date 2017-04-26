@@ -1,8 +1,15 @@
 require_relative 'dollarProxy'
-
+require_relative 'checksun/checksun'
 require 'tk'
 require 'date'
 require 'time'
+
+
+unless Checksun.verify "db.txt"
+  puts "Erro: Arquivo alterado"
+  exit
+end
+
 
 def download
   proxy = DollarProxy.new :writer
